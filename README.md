@@ -17,8 +17,8 @@ Instructions for the battle snake dev day
 - set to public when you are ready to play against other people
 
 ## Other snakes you can play against
--
--
+- DevDaySuperStar
+- NotSoGreat
 
 
 ## Routes
@@ -41,7 +41,7 @@ Instructions for the battle snake dev day
 
 ### /start
 - post
-
+- return 200 with move
 
 ### /move
 - post
@@ -181,8 +181,16 @@ create a heroku account
 ### Copy URL
 - copy the URL to your battle snake and play!
 
+## CodeSandbox
 
-#Have Fun!
+- sign in with github
+- choose correct server template 
+- add any needed dependences
+- copy url to snake
+
+
+
+# Have Fun
 
 
 
