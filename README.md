@@ -3,9 +3,9 @@ Instructions for the battle snake dev day
 
 
 # Resources
-[Battle Snake Website](https://play.battlesnake.com/)
-[Battle Snake Docs](https://docs.battlesnake.com/)
-[Battle Snake Quick Start Guide](https://docs.battlesnake.com/guides/getting-started)
+- [Battle Snake Website](https://play.battlesnake.com/)
+- [Battle Snake Docs](https://docs.battlesnake.com/)
+- [Battle Snake Quick Start Guide](https://docs.battlesnake.com/guides/getting-started)
 
 
 # Getting Started
@@ -182,6 +182,7 @@ create a heroku account
 - copy the URL to your battle snake and play!
 
 
+#Have Fun!
 
 
 
