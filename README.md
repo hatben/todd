@@ -147,12 +147,14 @@ Instructions for the battle snake dev day
 # Hosting Options
 [Hosting Suggestions](https://docs.battlesnake.com/references/hosting-suggestions)
 
-## Replit
+## CodeAnywhere setup
 
- - login with github
- - choose create 
- - pick languge you would like
- - copy url to snake (use http not https)
+ - Create account and login
+ - Verify email
+ - choose create container
+ - name container and choose stack you want to use
+ - copy url to snake (use http not https) 
+ - - this is found on the codeanywhere dashboard under your containers info
  - start programming routes
 
 ## Heroku setup
