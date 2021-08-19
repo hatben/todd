@@ -1,206 +1,100 @@
-# Battle Snakes
-Instructions for the battle snake dev day
+# A Simple [Battlesnake](http://play.battlesnake.com?utm_source=github&utm_medium=readme&utm_campaign=javascript_starter&utm_content=homepage) Written in JavaScript
+
+![Battlesnake Logo](https://media.battlesnake.com/social/GitHubSocial.png)
+
+This is a basic implementation of the [Battlesnake API](https://docs.battlesnake.com/references/api). It's a great starting point for anyone wanting to program their first Battlesnake using JavaScript. It comes ready to use with [Repl.it](https://repl.it) and [Heroku](https://heroku.com), or you can use any other cloud provider you'd like. 
+
+## Technologies Used
+
+* [JavaScript](https://www.javascript.com/)
+* [Node.js](https://nodejs.dev/)
+* [Express](https://expressjs.com/)
 
 
-# Resources
-- [Battle Snake Website](https://play.battlesnake.com/)
-- [Battle Snake Docs](https://docs.battlesnake.com/)
-- [Battle Snake Quick Start Guide](https://docs.battlesnake.com/guides/getting-started)
+## Quickstart
 
+The [Quick Start Coding Guide](https://docs.battlesnake.com/guides/getting-started) provides the full set of instructions to customize, register, and create your first games with your Battlesnake! While the guide uses [Repl.it](https://repl.it) as an example host, the instructions can be modified to work with any hosting provider. You can also find advice on other hosting providers on our [Hosting Suggestions](https://docs.battlesnake.com/references/hosting-suggestions) page.
 
-# Getting Started
+### Prerequisites
 
-## Creating your snake
-- sign in with github
-- go to profile page
-- create new snake
-- set to public when you are ready to play against other people
+* A free [Battlesnake Account](https://play.battlesnake.com/?utm_source=github&utm_medium=readme&utm_campaign=javascript_starter&utm_content=homepage)
 
-## Other snakes you can play against
-- DevDaySuperStar
-- NotSoGreat
+---
 
+## Customizing Your Battlesnake
 
-## Routes
-[Battle Snake API reference](https://docs.battlesnake.com/references/api)
+Locate the `info` function inside [src/logic.js](src/logic.js#L1). You should see a line that looks like this:
 
-### /
- -empty get request 
- - return 200 with
- ```
-    {
-    "apiversion": "1",
-    "author": "MyUsername",
-    "color" : "#888888",
-    "head" : "default",
-    "tail" : "default",
-    "version" : "0.0.1-beta"
-    }
-```
-[Personalize your Battle Snake](https://docs.battlesnake.com/references/personalization)
-
-### /start
-- post
-- return 200 with move
-
-### /move
-- post
-- return 200 with move
-```
-{
-  "move": "up",
-  "shout": "I am moving up!"
+```javascript
+const response = {
+  apiversion: "1",
+  author: "",
+  color: "#888888",
+  head: "default",
+  tail: "default"
 }
 ```
+This function is called by the game engine periodically to make sure your Battlesnake is healthy, responding correctly, and to determine how your Battlesnake will appear on the game board. See [Battlesnake Personalization](https://docs.battlesnake.com/references/personalization) for how to customize your Battlesnake's appearance using these values.
 
-### /end
-- post 
-- return 200 empty 
+Whenever you update these values, go to the page for your Battlesnake and select 'Refresh Metadata' from the option menu. This will update your Battlesnake to use your latest configuration and those changes should be reflected in the UI as well as any new games created.
 
+## Changing Behavior
 
-## Sample Move Request
-[Sample move Reqest for your Battle Snake](https://docs.battlesnake.com/references/api/sample-move-request)
+On every turn of each game your Battlesnake receives information about the game board and must decide its next move.
 
+Locate the `move` function inside [src/logic.js](src/logic.js#L21). Possible moves are "up", "down", "left", or "right". To start your Battlesnake will choose a move randomly. Your goal as a developer is to read information sent to you about the board (available in the `gameState` variable) and decide where your Battlesnake should move next.
 
-```
-{
-  "game": {
-    "id": "game-00fe20da-94ad-11ea-bb37",
-    "ruleset": {
-      "name": "standard",
-      "version": "v.1.2.3"
-    },
-    "timeout": 500
-  },
-  "turn": 14,
-  "board": {
-    "height": 11,
-    "width": 11,
-    "food": [
-      {"x": 5, "y": 5}, 
-      {"x": 9, "y": 0}, 
-      {"x": 2, "y": 6}
-    ],
-    "hazards": [
-      {"x": 3, "y": 2}
-    ],
-    "snakes": [
-      {
-        "id": "snake-508e96ac-94ad-11ea-bb37",
-        "name": "My Snake",
-        "health": 54,
-        "body": [
-          {"x": 0, "y": 0}, 
-          {"x": 1, "y": 0}, 
-          {"x": 2, "y": 0}
-        ],
-        "latency": "111",
-        "head": {"x": 0, "y": 0},
-        "length": 3,
-        "shout": "why are we shouting??",
-        "squad": ""
-      }, 
-      {
-        "id": "snake-b67f4906-94ae-11ea-bb37",
-        "name": "Another Snake",
-        "health": 16,
-        "body": [
-          {"x": 5, "y": 4}, 
-          {"x": 5, "y": 3}, 
-          {"x": 6, "y": 3},
-          {"x": 6, "y": 2}
-        ],
-        "latency": "222",
-        "head": {"x": 5, "y": 4},
-        "length": 4,
-        "shout": "I'm not really sure...",
-        "squad": ""
-      }
-    ]
-  },
-  "you": {
-    "id": "snake-508e96ac-94ad-11ea-bb37",
-    "name": "My Snake",
-    "health": 54,
-    "body": [
-      {"x": 0, "y": 0}, 
-      {"x": 1, "y": 0}, 
-      {"x": 2, "y": 0}
-    ],
-    "latency": "111",
-    "head": {"x": 0, "y": 0},
-    "length": 3,
-    "shout": "why are we shouting??",
-    "squad": ""
-  }
-}
+See the [Battlesnake Game Rules](https://docs.battlesnake.com/references/rules) for more information on playing the game, moving around the board, and improving your algorithm.
+
+## (Optional) Running Your Battlesnake Locally
+
+Eventually you might want to run your Battlesnake server locally for faster testing and debugging. You can do this by installing [Node.js](https://nodejs.org/en/download/) and running:
+
+```shell
+npm install
+npm start
 ```
 
-## Basic Concepts
-- don't run into yourself
-- don't hit the walls
-- don't run into other snakes
-- find food
-- attack other snakes if possible?
+**Note:** You cannot create games on [play.battlesnake.com](https://play.battlesnake.com) using a locally running Battlesnake unless you install and use a port forwarding tool like [ngrok](https://ngrok.com/). See [Hosting Suggestions.](https://docs.battlesnake.com/references/hosting-suggestions#local)
 
+## Running Tests
 
-# Hosting Options
-[Hosting Suggestions](https://docs.battlesnake.com/references/hosting-suggestions)
-
-## CodeAnywhere setup
-
- - Create account and login
- - Verify email
- - choose create container
- - name container and choose stack you want to use
- - copy url to snake (use http not https) 
- - - this is found on the codeanywhere dashboard under your containers info
- - start programming routes
-
-## Heroku setup
-
-### Heroku install commands
-
+This Starter Project comes with a very simple test suite for you to expand! Located in `test/logic.spec.js` you can run them using the following command:
+```shell
+npm test
 ```
-brew tap heroku/brew && brew install heroku
-```
+---
 
-create a heroku account
+## Playing Battlesnake
 
-### On the Heroku website
+### Completing Challenges
 
-- create a new app
-- choose region US
-- follow the commands on the screen using whatever CLI you would like
+If you're looking for the Single Player Mode of Battlesnake, or something to practice with between events, check out [Challenges.](https://docs.battlesnake.com/guides/quick-start-challenges-guide)
 
+### Joining a Battlesnake Arena
 
-### Make sure you make a Procfile file in your project
+Once you've made your Battlesnake behave and survive on its own, you can enter it into the [Global Battlesnake Arena](https://play.battlesnake.com/arena/global) to see how it performs against other Battlesnakes worldwide.
 
-- a Procfile file is where you put the commands to run your sever once its deployed
-- use web: before the command
-- ex (web: deno run --allow-net=:${PORT} index.ts --port=${PORT})
+Arenas will regularly create new games and rank Battlesnakes based on their results. They're a good way to get regular feedback on how well your Battlesnake is performing, and a fun way to track your progress as you develop your algorithm.
 
-### Copy URL
-- copy the URL to your battle snake and play!
+### Joining a Battlesnake League
 
-## CodeSandbox
+Want to get out there to compete and win prizes? Check out the [Quick Start League Guide](https://docs.battlesnake.com/guides/quick-start-league-guide) for information on the how and when of our competitive seasons.
 
-- sign in with github
-- choose correct server template 
-- add any needed dependences
-- copy url to snake
+---
 
+## Resources
 
+All documentation is available at [docs.battlesnake.com](https://docs.battlesnake.com), including detailed Guides, API References, and Tips.
 
-# Have Fun
+You can also join the Battlesnake Developer Community on [Discord](https://play.battlesnake.com/discord?utm_source=github&utm_medium=readme&utm_campaign=javascript_starter&utm_content=discord). We have a growing community of Battlesnake developers of all skill levels wanting to help everyone succeed and have fun with Battlesnake :)
+
+Check out live Battlesnake events on [Twitch](https://www.twitch.tv/battlesnakeofficial) and see what is happening when on the [Calendar.](https://play.battlesnake.com/calendar?utm_source=github&utm_medium=readme&utm_campaign=javascript_starter&utm_content=calendar)
+
+Want to contribute to Battlesnake? We have a number of open-source codebases and would love for you to get involved! Check out our page on [Contributing.](https://docs.battlesnake.com/guides/contributing)
 
 
+## Feedback
 
-
-
-
-
-
-
-
+**Do you have an issue or suggestions for this repository?** Head over to our [Feedback Repository](https://play.battlesnake.com/feedback?utm_source=github&utm_medium=readme&utm_campaign=javascript_starter&utm_content=feedback) today and let us know!
 
